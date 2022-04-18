@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <a class="navbar-brand" href="#">May the world warmly say HI to:</a>
+        <h3> {{id.first_name}}!</h3>
+        <a href="/dashboard" class="btn btn-warning">Homepage</a>
+        <a href="/logout" class="btn btn-warning">Logout</a>
+        
+    </nav>
+
+    <div>
+        <div class="d-flex justify-content-around">
+            <form class="col-3 p-4 text-dark">
+                <h2 class="text-primary">My Collections</h2>
+                    <img class="cropped" src="{{ url_for('static', filename='images/sunset.jpg')}}" alt="cover">
+                    <img class="cropped" src="{{ url_for('static', filename='images/book.jpg')}}" alt="cover">
+
+            </form>
+        </div>
+        
+
+        <div class="d-flex justify-content-around">
+        <form action="/create_recipe" method="POST">
+            <h2 class="text-primary">Gratitude Journal</h2>
+
+            <h6 class="font-italic"> Nature does not hurry, yet everything is accomplished. - Lao Tzu</h6>
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <p>{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <div>
+                <label for="name">Topic:</label>
+                <input type="text" name="name">   
+            </div>
+
+            <div>
+                <label for="description">Description: </label>
+                <input type="textarea" name="description">
+            </div>
+            
+            <div>
+                <label for="instructions">Meditation Methods:</label>
+
+
+                <textarea id="instructions" name="instructions" rows="5" cols="33"></textarea>
+            </div>
+
+            <div>
+                <label for="date_made">Today's Date:</label>
+                <input type="date" name="date_made">
+            </div>
+
+            <input type="submit" value="Create">
+        </form>
+
+
+    </div>
+</body>
+</html>

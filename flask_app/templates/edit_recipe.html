@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <a class="navbar-brand" href="#">May the world warmly say HI to:</a>
+        <h3> {{user.first_name}}!</h3>
+        <a href="/dashboard" class="btn btn-warning">Homepage</a>
+        <a href="/logout" class="btn btn-warning">Logout</a>
+        
+    </nav>
+
+    <br>
+
+    <div class="card col-10 mx-auto my-5 bg-dark text-light">
+        <form action="/update/recipes" method="POST">
+            <img src="{{ url_for('static', filename='images/quote2.jpg')}}" alt="cover">
+            
+            <div class="card-body">
+
+                <h3 class="card-title">Edit Journal</h3>
+                
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                    <div>
+                        <label for="name">Topic:</label>
+                        <input type="text" name="name" value={{ one_recipe.name}}>   
+                    </div>
+
+                    <div>
+                        <label for="description">Description:</label>
+                        <input type="text" name="description" value={{ one_recipe.description}}>
+                    </div>
+                    
+                    <div>
+                        <label for="instructions">Meditation Methods:</label>
+                        <input type="text" name="instructions" value={{ one_recipe.instructions}}> 
+                    </div>
+
+                    <div>
+                        <label for="date_made">Date Made On:</label>
+                        <input type="date" name="date_made" value={{ one_recipe.date_made}}>
+                    </div>
+
+                    <input type="hidden" name="recipe_id" value={{ one_recipe.id}}>
+                    
+                    <input type="submit" value="Update">
+                </div>
+        </form>
+    </div>
+</body>
+</html>

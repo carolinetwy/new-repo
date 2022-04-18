@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style2.css') }}">
+
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <a class="navbar-brand" href="#">May the world warmly say HI to:</a>
+        <h3>{{id.first_name}}!</h3>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Start now..." aria-label="Search">
+                <a href="/new/recipe" class="btn btn-outline-success my-2 my-sm-0" type="submit">Create</a>
+            </form>
+            <a href="/logout" class="btn btn-warning">Logout</a>
+        
+    </nav>
+
+    <br>
+
+    <table class="table table-hover">
+        <tr>
+            <th>HIGHLIGHTS</th>
+            <th></th>
+        </tr>
+    </table>
+    <div class ="community">
+        <div class ="each">
+            <p>2020/12/12 - Great video I think you guys should check this out!</p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/inpok4MKVLM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        
+        <div>
+            <p>2021/01/10 - This really helps me better to go to sleep. TOO STRESS ABOUT work today. </p>
+            <iframe src="https://embed.podcasts.apple.com/us/podcast/bedtime-meditation-daily-meditation/id1543825039?i=1000523465447&amp;itsct=podcast_box_player&amp;itscg=30200&amp;ls=1&amp;theme=auto" height="175px" frameborder="0" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" allow="autoplay *; encrypted-media *;" style="width: 100%; max-width: 660px; overflow: hidden; border-radius: 10px; background: transparent;"></iframe>
+
+        </div>
+
+        <div>
+            <p>2021/05/02 - Sharon shared this to me today. </p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/6uVSkvWO7As" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <br>
+
+    <table class="table table-hover">
+        <tr>
+            <th>All Summaries</th>
+            <th></th>
+        </tr>
+    <tbody>
+        {% for recipe in recipes %}
+        <tr>
+            <td>{{recipe.name}}</td>
+            <td>
+            <a href="/recipes/{{recipe.id}}">View</a>
+            <a href="/update/recipes/{{recipe.id}}">Edit</a>
+            <a href="/delete/recipes/{{recipe.id}}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    
+</body>
+</html>

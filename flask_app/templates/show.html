@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <a class="navbar-brand" href="#">May the world warmly say HI to:</a>
+        <h3> {{user.first_name}}!</h3>
+        <a href="/dashboard" class="btn btn-warning">Homepage</a>
+        <a href="/logout" class="btn btn-warning">Logout</a>
+        
+    </nav>
+
+    <br>
+
+
+    <div class="card col-10 mx-auto my-5 bg-dark text-light">
+        <img src="{{ url_for('static', filename='images/quote1.jpg')}}" alt="cover">
+
+        <div class="card-body">
+            
+            <h3 class="card-title">{{one_recipe.name}}</h3>
+            <p class="card-text">Description: {{one_recipe.description}}</p>
+            <p class="card-text">Meditation Methods: {{one_recipe.instructions}}</p>
+            <p class="card-text">Date Made On:: {{one_recipe.date_made}}</p>
+        </div>
+    </div>
+
+    
+</body>
+</html>
